@@ -1,19 +1,18 @@
-"Disk"
-{
-	"Admin"
+"Disk" =  {
 	{
-		"Home"
-		"Desktop"
-		"Lib"
-		"Path"
-		"Hello"
+		"Path" = 
+		"Lib" = 
+		"Desktop" = 
+		"Home" = 
+		"Hello" = 
 	}
-	"Alex"
+	"Alex" = 
 	{
-		"Hello"
-		"Home"
-		"Desktop"
-		"Lib"
-		"Path"
+		"Hello" = 
+		"Path" = 
+		"Lib" = 
+		"Desktop" = 
+		"Home" = 
 	}
+	"Admin" = 
 }
