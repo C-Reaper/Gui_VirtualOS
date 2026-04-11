@@ -1,18 +1,16 @@
 "Disk" =  {
-	{
+	"Alex" =  {
 		"Path" = 
 		"Lib" = 
 		"Desktop" = 
 		"Home" = 
 		"Hello" = 
 	}
-	"Alex" = 
-	{
+	"Admin" =  {
 		"Hello" = 
 		"Path" = 
 		"Lib" = 
 		"Desktop" = 
 		"Home" = 
 	}
-	"Admin" = 
 }

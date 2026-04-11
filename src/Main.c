@@ -146,22 +146,25 @@ void* VB_Commander(void* lpParam) {
     if(VSession.LogedIn) Name = VSession.LogedIn->Name;
     Stream_Printf(&cmd.Stdout,"User[%s]: %s $ ",Name,cmd.DirInStr);
 
+    char* cstr = (char*)cmd.Stdout.Buffer.Memory;
     Thread hThread = Thread_Null();
     
     while(cmd.Running){
         cmd.Stdin.Enabled = w->Focus;
-        hThread = Session_Update(&VSession,&cmd,hThread);
+        Session_Update(&VSession,&cmd,&hThread);
 
         Mutex_Lock(&w->hMutex);
-        
         Graphics_Clear(w->SwapBuffer,w->Context.w,w->Context.h,BLACK);
 
         int Line = 0;
         int Last = 0;
         float SizeY = (TitleAlxFont.CharSizeY * 1.2f);
         char* cstr = String_CStr(&cmd.Stdout.Buffer);
+        
         float Scroll = w->Context.h - (float)(CStr_CountOf(cstr,'\n')+4) * SizeY;
-        if(Scroll>0) Scroll = 0;
+        if(Scroll>0)
+            Scroll = 0;
+            
         if(Scroll/w->Context.h<-4.0f){
             Cmd_Clear(&VSession,&cmd);
         }
@@ -184,14 +187,12 @@ void* VB_Commander(void* lpParam) {
         Graphics_RenderCharAlxFont(w->SwapBuffer,w->Context.w,w->Context.h,&TitleAlxFont,'_',(cmd.Stdin.Curser+(cmd.Stdout.Buffer.size-Last)) * TitleAlxFont.CharSizeX,Scroll + Line * SizeY,RED);
 
         VWindow_Swap(w);
-
         Mutex_Unlock(&w->hMutex);
         
         Thread_Sleep_M(10);
     }
 
     Cmd_Free(&cmd);
-
     return NULL;
 }
 void* VB_Explorer(void* lpParam) {
@@ -540,7 +541,7 @@ void Setup(AlxWindow* w){
 
     VProcesses = PVector_New();
     VWindows = PVector_New();
-    VSession = Session_Load(NULL,"./data/FileSystem.alxon");
+    VSession = Session_Load(INPUTKEYBOARD_PATH,"./data/FileSystem.alxon");
     
     SearchBar = TextBox_New(Input_New(INPUT_MAXLENGTH,1),(Rect){ { 0.1f * GetWidth(),0.9f * GetHeight() },{ 0.3f * GetWidth(),0.1f * GetHeight() } },ALXFONT_PATHS_YANIS,0.05f * GetHeight(),0.05f * GetHeight(),BLACK);
 }
