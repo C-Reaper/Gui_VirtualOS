@@ -1,193 +1,63 @@
-# Gui_VirtualOS
+# Project README
 
+## Overview
+This project is a simple C program that calculates and prints the Fibonacci sequence. The code includes a `Main.c` file which serves as the entry point and a `Saved.h` file containing utility functions.
 
-## Project Overview
+## Features
+- Calculates Fibonacci sequence up to a given number.
+- Prints the result of the Fibonacci calculation.
 
-This project implements specialized functionality related to virtualos.
-
-## Core Components
-
-### Main Functionality
-- Implements core algorithms for virtualos
-- Efficient data structures
-- Optimized performance
-- Clean code organization
-
-### Technical Features
-- C/C++ implementation
-- Dynamic memory management
-- Platform-independent design
-- Real-time capable
-
-### Architecture
-- Module separation
-- Clear interface design
-- Proper abstraction layers
-- Extensible design
-
-## Use Cases
-- Production systems
-- Educational purposes
-- Research applications
-- Performance-critical operations
-
-## Performance Characteristics
-- Optimized algorithms
-- Efficient memory usage
-- Scalable architecture
-- Minimal overhead
-
-## Implementation Quality
-- Well-organized code
-- Meaningful naming
-- Proper error handling
-- Memory management
-
-## Build and Deployment
-- Standard C/C++ compilation
-- Makefile-based building
-- Cross-platform support
-- Easy integration
-
-
-## Building the Project
-
-### Prerequisites
-- C/C++ Compiler (GCC, Clang, or MSVC)
-- Make utility
-- Standard development tools
-
-### Build Steps
-
-1. Navigate to project directory:
-```bash
-cd Gui_VirtualOS
-```
-
-2. Build the project:
-```bash
-make -f Makefile.(os) all
-```
-
-3. For clean rebuild:
-```bash
-make -f Makefile.(os) clean
-make -f Makefile.(os) all
-```
-
-4. If there are ./bin and ./libs directories, build libs with:
-```bash
-make -f Makefile.(os) cleanlib
-make -f Makefile.(os) lib
-```
-
-### Build Options
-```bash
-make -f Makefile.(os) all         # build output
-make -f Makefile.(os) do        # build + exe output
-make -f Makefile.(os) clean   # Remove build artifacts
-```
-
-## Running the Project
-
-Execute the compiled binary:
-
-```bash
-./build/Main(.exe)
-```
-
-Or using make:
-```bash
-make -f Makefile.(os) exe
-```
-
-## Project Organization
+## Project Structure
+The project structure is organized as follows:
 
 ```
 Gui_VirtualOS/
-├── src/
+├── build/              # .exe files produced by Main.c
+├── src/                # source code
 │   ├── Main.c          # Entry point
-│   └── *.c             # Implementation files
-├── Makefile            # Build configuration
+│   └── Saved.h         # Header-based C-file containing utility functions
+├── Makefile.linux      # Linux Build configuration
+├── Makefile.windows    # Windows Build configuration
+├── Makefile.wine       # Wine Build configuration for cross-compilation to Windows on Linux
+├── Makefile.web        # WebAssembly Build configuration using Emscripten
 └── README.md           # This file
+└── LICENSE
+└── .gitignore
 ```
 
-## Technical Details
+## Prerequisites
+- C/C++ Compiler and Debugger (GCC, Clang)
+- Make utility
+- Standard development tools
 
-### Language: C/C++
-- Performance-oriented
-- Direct hardware access where needed
-- Memory efficient
-- Widely portable
+## Build & Run
+The project supports building for different platforms using the provided Makefiles.
 
-### Key Technologies
-- Standard C library
-- System-specific libraries as needed
-- Algorithm optimization
-- Efficient data structures
+### Linux
+To build and run on Linux:
 
-### Code Quality
-- Clean, readable implementation
-- Proper error handling
-- Resource management
-- Well-documented algorithms
+```sh
+cd Gui_VirtualOS
+make -f Makefile.linux all
+./build/Main
+```
 
-## Development Notes
+### Windows
+To build and run on Windows (Linux cross-compilation):
 
-### Architecture Decisions
-- Modular design for reusability
-- Efficient algorithms for performance
-- Clear separation of concerns
-- Extensible structure
+```sh
+cd Gui_VirtualOS
+make -f Makefile.wine all
+WINEPREFIX=~/wine64 WINEARCH=win64 wine build/Main.exe
+```
 
-### Performance Optimizations
-- Algorithm efficiency
-- Memory layout optimization
-- Cache-conscious programming
-- Minimal overhead
+### WebAssembly
+To build for WebAssembly:
 
-### Portability
-- Cross-platform compatible
-- Platform-specific optimizations where possible
-- Standard library usage
-- No external dependencies (where feasible)
+```sh
+cd Gui_VirtualOS
+make -f Makefile.web all
+emrun --no_browser --port 8080 build/index.html
+```
 
-## Troubleshooting
-
-### Build Issues
-- Ensure compiler is installed
-- Check file paths and permissions
-- Verify Make installation
-- Review compiler error messages
-
-### Runtime Issues
-- Check input data validity
-- Verify file accessibility
-- Ensure sufficient memory
-- Review output format
-
-### Performance Issues
-- Check compiler optimization flags
-- Profile hot code paths
-- Review algorithm complexity
-- Consider input size
-
-## Future Improvements
-
-Potential enhancements:
-- Additional optimization opportunities
-- Extended functionality
-- Platform-specific optimizations
-- Performance profiling
-
-## References
-
-For technical background:
-- Algorithm textbooks
-- Computer science references
-- Language documentation
-- Online educational resources
-
----
-
-*Project implementing practical algorithms and data structures in C/C++*
+This README provides a clear and concise guide to the project, its structure, and how to build and run it on different platforms.
